@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_arch/ui/common/atoms/our_text.dart';
-import 'package:flutter_clean_arch/ui/model_view/album/album_model_view.dart';
+import 'package:flutter_clean_arch/ui/model_view/album/list_album_model_view.dart';
 
-Widget asyncSnapshotAlbumHelper(AsyncSnapshot snapshot) {
+Widget asyncSnapshotListAlbumHelper(AsyncSnapshot snapshot) {
   Widget element = Container();
   if (snapshot.hasError) {
     element = H2(text: 'Error : ${snapshot.error.toString()}');
@@ -11,11 +11,7 @@ Widget asyncSnapshotAlbumHelper(AsyncSnapshot snapshot) {
       child: CircularProgressIndicator(),
     );
   } else {
-    element = AlbumModelView(
-      description: 'Album id :' + snapshot.data.id.toString(),
-      title: snapshot.data.title,
-      url: snapshot.data.thumbnailUrl,
-    );
+    element = ListAlbumModelView(snapshot);
   }
   return element;
 }
